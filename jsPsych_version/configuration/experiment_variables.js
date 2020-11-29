@@ -18,7 +18,7 @@ var go_stim1 = repo_site + 'images/go_left.png';
 var go_stim2 = repo_site + 'images/go_right.png';
 var stop_stim1 = repo_site + 'images/stop_left.png';
 var stop_stim2 = repo_site + 'images/stop_right.png';
-var blank = '';
+var blank = 'images/blank.png';
 
 // define the appropriate response (key) for each stimulus
 // (this will also be used to set the allowed response keys)
