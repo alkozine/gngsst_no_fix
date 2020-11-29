@@ -163,8 +163,125 @@ for (var ii = 0; ii < design.length; ii++) {
 };
 if (flag_debug) {
     console.log(design); // uncomment to print the design in the browser's console
-}
+};
 
+
+var design1 = jsPsych.randomization.factorial(factors, 1);
+
+// modify the design to make it compatible with the custom stop signal plugin
+//  - set a first/second stimulus property.
+//    on no-signal trials, only one image will be used (i.e. the go image/stimulus)
+//    on stop-signal trials, two images will be used (i.e. the go and stop images/stimuli)
+//  - set a data property with additional attributes for identifying the type of trial
+for (var ii = 0; ii < design1.length; ii++) {
+    design1[ii].data = {}
+    if ((design1[ii].stim == choice_stim1) && (design1[ii].drink == water) && (design1[ii].signal == 'go')) {
+        design1[ii].fixation = water;
+        design1[ii].first_stimulus = go_stim1;
+        design1[ii].second_stimulus = go_stim1;
+        design1[ii].data.stim = choice_stim1;
+        design1[ii].data.correct_response = cresp_stim1;
+        design1[ii].data.signal = "no";
+      }
+        else if ((design1[ii].stim == choice_stim1) && (design1[ii].drink == drink_sd) && (design1[ii].signal == 'go')) {
+            design1[ii].fixation = drink_sd;
+            design1[ii].first_stimulus = go_stim1;
+            design1[ii].second_stimulus = go_stim1;
+            design1[ii].data.stim = choice_stim1;
+            design1[ii].data.correct_response = cresp_stim1;
+            design1[ii].data.signal = "no";
+            else if ((design1[ii].stim == choice_stim1) && (design1[ii].drink == blank) && (design1[ii].signal == 'go')) {
+                design1[ii].fixation = blank;
+                design1[ii].first_stimulus = go_stim1;
+                design1[ii].second_stimulus = go_stim1;
+                design1[ii].data.stim = choice_stim1;
+                design1[ii].data.correct_response = cresp_stim1;
+                design1[ii].data.signal = "no";
+        } else if ((design1[ii].stim == choice_stim2) && (design1[ii].drink == blank) && (design1[ii].signal == 'go')) {
+            design1[ii].fixation = blank;
+            design1[ii].first_stimulus = go_stim2;
+            design1[ii].second_stimulus = go_stim2;
+            design1[ii].data.stim = choice_stim2;
+            design1[ii].data.correct_response = cresp_stim2;
+            design1[ii].data.signal = "no";
+    } else if ((design1[ii].stim == choice_stim2) && (design1[ii].drink == drink_sd) && (design1[ii].signal == 'go')) {
+        design1[ii].fixation = drink_sd;
+        design1[ii].first_stimulus = go_stim2;
+        design1[ii].second_stimulus = go_stim2;
+        design1[ii].data.stim = choice_stim2;
+        design1[ii].data.correct_response = cresp_stim2;
+        design1[ii].data.signal = "no";
+      } else if ((design1[ii].stim == choice_stim2) && (design1[ii].drink == water) && (design1[ii].signal == 'go')) {
+          design1[ii].fixation = water;
+          design1[ii].first_stimulus = go_stim2;
+          design1[ii].second_stimulus = go_stim2;
+          design1[ii].data.stim = choice_stim2;
+          design1[ii].data.correct_response = cresp_stim2;
+          design1[ii].data.signal = "no";
+    } else if ((design1[ii].stim == choice_stim1) && (design1[ii].signal == 'stop')) {
+        design1[ii].fixation = water;
+        design1[ii].first_stimulus = go_stim1;
+        design1[ii].second_stimulus = stop_stim1;
+        design1[ii].data.stim = choice_stim1;
+        design1[ii].data.correct_response = "undefined";
+        design1[ii].data.signal = "yes";
+    } else if ((design1[ii].stim == choice_stim2) && (design1[ii].signal == 'stop')) {
+        design1[ii].fixation = water;
+        design1[ii].first_stimulus = go_stim2;
+        design1[ii].second_stimulus = stop_stim2;
+        design1[ii].data.stim = choice_stim2;
+        design1[ii].data.correct_response = "undefined";
+        design1[ii].data.signal = "yes";
+    } else if ((design1[ii].stim == choice_stim1) && (design1[ii].drink == drink_sd) && (design1[ii].signal == 'ng')) {
+        design1[ii].fixation = drink_sd;
+        design1[ii].first_stimulus = stop_stim1;
+        design1[ii].second_stimulus = stop_stim1;
+        design1[ii].data.stim = choice_stim1;
+        design1[ii].data.correct_response = "undefined";
+        design1[ii].data.signal = "ng";
+      } else if ((design1[ii].stim == choice_stim1) && (design1[ii].drink == water) && (design1[ii].signal == 'ng')) {
+          design1[ii].fixation = water;
+          design1[ii].first_stimulus = stop_stim1;
+          design1[ii].second_stimulus = stop_stim1;
+          design1[ii].data.stim = choice_stim1;
+          design1[ii].data.correct_response = "undefined";
+          design1[ii].data.signal = "ng";
+      }    else if ((design1[ii].stim == choice_stim1) && (design1[ii].drink == blank) && (design1[ii].signal == 'ng')) {
+              design1[ii].fixation = blank;
+              design1[ii].first_stimulus = stop_stim1;
+              design1[ii].second_stimulus = stop_stim1;
+              design1[ii].data.stim = choice_stim1;
+              design1[ii].data.correct_response = "undefined";
+              design1[ii].data.signal = "ng";
+        }  else if ((design1[ii].stim == choice_stim2) && (design1[ii].drink == blank) && (design1[ii].signal == 'ng')) {
+            design1[ii].fixation = blank;
+            design1[ii].first_stimulus = stop_stim2;
+            design1[ii].second_stimulus = stop_stim2;
+            design1[ii].data.stim = choice_stim2;
+            design1[ii].data.correct_response = "undefined";
+            design1[ii].data.signal = "ng";
+    }  else if ((design1[ii].stim == choice_stim2) && (design1[ii].drink == water) && (design1[ii].signal == 'ng')) {
+        design1[ii].fixation = water;
+        design1[ii].first_stimulus = stop_stim2;
+        design1[ii].second_stimulus = stop_stim2;
+        design1[ii].data.stim = choice_stim2;
+        design1[ii].data.correct_response = "undefined";
+        design1[ii].data.signal = "ng";
+      }
+    else if ((design1[ii].stim == choice_stim2) && (design1[ii].drink == drink_sd) && (design1[ii].signal == 'ng')) {
+        design1[ii].fixation = drink_sd;
+        design1[ii].first_stimulus = stop_stim2;
+        design1[ii].second_stimulus = stop_stim2;
+        design1[ii].data.stim = choice_stim2;
+        design1[ii].data.correct_response = "undefined";
+        design1[ii].data.signal = "ng";
+    }
+    delete design1[ii].signal;
+    delete design1[ii].stim;
+};
+if (flag_debug) {
+    console.log(design1); // uncomment to print the design in the browser's console
+}
 
 /* #########################################################################
   Define the individual events/trials that make up the experiment
@@ -498,7 +615,7 @@ var evaluate_end_if_practice = {
 // timeline_variables determine the stimuli in the 'stimulus' trial
 var trial_procedure = {
     timeline: [blank_ITI, held_down_node, stimulus, feedback_node, evaluate_end_if_practice],
-    timeline_variables: design,
+    timeline_variables: design1,
     randomize_order: true,
     repetitions: NdesignReps_exp,
 };
