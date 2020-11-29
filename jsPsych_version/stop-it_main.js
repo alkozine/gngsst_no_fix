@@ -3,7 +3,7 @@
  * Kyoung Whan Choe (https://github.com/kywch/)
  *
  * The below codes are copied and adapted from https://github.com/fredvbrug/STOP-IT
- * 
+ *
  **/
 
 
@@ -17,7 +17,7 @@ var flag_debug = false;
 
 
 
-/* 
+/*
  * STOP-IT specific variables
  */
 
@@ -36,10 +36,11 @@ Create the design based on the input from 'experiment_variables.js'
 // Since we have two stimuli, the number of trials of the basic design = 2 * nstim
 // This design will later be repeated a few times for each block
 // (number of repetitions is also defined in 'experiment_variables.js')
-var ngostop = 1 / nprop // covert proportion to trial numbers. E.g. 1/5 = 1 stop signal and 4 go
+var ngostop = 2 / nprop // covert proportion to trial numbers. E.g. 1/5 = 1 stop signal and 4 go
 var ntrials = ngostop * 2 // total number of trials in basic design (2 two choice stimuli x ngostop)
 var signalArray = Array(ngostop - 1).fill('go'); // no-signal trials
 signalArray[ngostop - 1] = ('stop'); // stop-signal trials
+signalArray[ngostop - 2] = ('ng'); // nogo-signal trials
 
 // create factorial design from choices(2) and signal(nstim)
 var factors = {
@@ -83,6 +84,20 @@ for (var ii = 0; ii < design.length; ii++) {
         design[ii].data.stim = choice_stim2;
         design[ii].data.correct_response = "undefined";
         design[ii].data.signal = "yes";
+    } else if ((design[ii].stim == choice_stim1) && (design[ii].signal == 'ng')) {
+        design[ii].fixation = fix_stim;
+        design[ii].first_stimulus = stop_stim1;
+        design[ii].second_stimulus = stop_stim1;
+        design[ii].data.stim = choice_stim1;
+        design[ii].data.correct_response = "undefined";
+        design[ii].data.signal = "ng";
+    } else if ((design[ii].stim == choice_stim2) && (design[ii].signal == 'ng')) {
+        design[ii].fixation = fix_stim;
+        design[ii].first_stimulus = stop_stim2;
+        design[ii].second_stimulus = stop_stim2;
+        design[ii].data.stim = choice_stim2;
+        design[ii].data.correct_response = "undefined";
+        design[ii].data.signal = "ng";
     }
     delete design[ii].signal;
     delete design[ii].stim;

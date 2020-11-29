@@ -8,15 +8,17 @@
 
 // define the site that hosts stimuli images
 // usually https://<your-github-username>.github.io/<your-experiment-name>/
-var repo_site = 'https://kywch.github.io/STOP-IT/jsPsych_version/';
+var repo_site = 'https://alkozine.github.io/gngsst/jsPsych_version/';
 
 // locate the stimuli that will be used in the experiment
 var fix_stim = repo_site + 'images/fix.png';
+var drink_sd = repo_site + 'images/sd1.png';
+var water = repo_site + 'images/water.png';
 var go_stim1 = repo_site + 'images/go_left.png';
 var go_stim2 = repo_site + 'images/go_right.png';
 var stop_stim1 = repo_site + 'images/stop_left.png';
 var stop_stim2 = repo_site + 'images/stop_right.png';
-
+var drink = [drink_sd, water];
 
 // define the appropriate response (key) for each stimulus
 // (this will also be used to set the allowed response keys)
@@ -45,7 +47,7 @@ var nprop = 1/4;
 // E.g. when NdesignReps = 8 and nprop = 1/4 (see above), the number of trials per block = 64 (8*8)
 // Do this for the practice and experimental phases (note: practice can never be higher than exp)
 
-var NdesignReps_practice = 4;
+var NdesignReps_practice = 1;
 var NdesignReps_exp = 8;
 
 // Number of experimental blocks (excluding the first practice block).
@@ -57,7 +59,7 @@ var NexpBL = 4;
 // ----- CUSTOMISE THE TIME INTERVALS (in milliseconds)-----
 
 var ITI = 500;    // fixed blank intertrial interval
-var FIX = 250;    // fixed fixation presentation
+var FIX = 250;
 var MAXRT = 1250; // fixed maximum reaction time
 var SSD = 200;    // start value for the SSD tracking procedure; will be updated throughout the experiment
 var SSDstep = 50; // step size of the SSD tracking procedure; this is also the lowest possible SSD
