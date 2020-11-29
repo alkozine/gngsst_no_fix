@@ -45,6 +45,7 @@ signalArray[ngostop - 2] = ('ng'); // nogo-signal trials
 // create factorial design from choices(2) and signal(nstim)
 var factors = {
     stim: [choice_stim1, choice_stim2],
+    drink: [drink_sd, water, blank],
     signal: signalArray,
 };
 var design = jsPsych.randomization.factorial(factors, 1);
@@ -56,20 +57,49 @@ var design = jsPsych.randomization.factorial(factors, 1);
 //  - set a data property with additional attributes for identifying the type of trial
 for (var ii = 0; ii < design.length; ii++) {
     design[ii].data = {}
-    if ((design[ii].stim == choice_stim1) && (design[ii].signal == 'go')) {
-        design[ii].fixation = fix_stim;
+    if ((design[ii].stim == choice_stim1) && (design[ii].drink == water) && (design[ii].signal == 'go')) {
+        design[ii].fixation = water;
         design[ii].first_stimulus = go_stim1;
         design[ii].second_stimulus = go_stim1;
         design[ii].data.stim = choice_stim1;
         design[ii].data.correct_response = cresp_stim1;
         design[ii].data.signal = "no";
-    } else if ((design[ii].stim == choice_stim2) && (design[ii].signal == 'go')) {
-        design[ii].fixation = fix_stim;
+      }
+        else if ((design[ii].stim == choice_stim1) && (design[ii].drink == drink_sd) && (design[ii].signal == 'go')) {
+            design[ii].fixation = drink_sd;
+            design[ii].first_stimulus = go_stim1;
+            design[ii].second_stimulus = go_stim1;
+            design[ii].data.stim = choice_stim1;
+            design[ii].data.correct_response = cresp_stim1;
+            design[ii].data.signal = "no";
+            else if ((design[ii].stim == choice_stim1) && (design[ii].drink == blank) && (design[ii].signal == 'go')) {
+                design[ii].fixation = blank;
+                design[ii].first_stimulus = go_stim1;
+                design[ii].second_stimulus = go_stim1;
+                design[ii].data.stim = choice_stim1;
+                design[ii].data.correct_response = cresp_stim1;
+                design[ii].data.signal = "no";
+        } else if ((design[ii].stim == choice_stim2) && (design[ii].drink == blank) && (design[ii].signal == 'go')) {
+            design[ii].fixation = blank;
+            design[ii].first_stimulus = go_stim2;
+            design[ii].second_stimulus = go_stim2;
+            design[ii].data.stim = choice_stim2;
+            design[ii].data.correct_response = cresp_stim2;
+            design[ii].data.signal = "no";
+    } else if ((design[ii].stim == choice_stim2) && (design[ii].drink == drink_sd) && (design[ii].signal == 'go')) {
+        design[ii].fixation = drink_sd;
         design[ii].first_stimulus = go_stim2;
         design[ii].second_stimulus = go_stim2;
         design[ii].data.stim = choice_stim2;
         design[ii].data.correct_response = cresp_stim2;
         design[ii].data.signal = "no";
+      } else if ((design[ii].stim == choice_stim2) && (design[ii].drink == water) && (design[ii].signal == 'go')) {
+          design[ii].fixation = water;
+          design[ii].first_stimulus = go_stim2;
+          design[ii].second_stimulus = go_stim2;
+          design[ii].data.stim = choice_stim2;
+          design[ii].data.correct_response = cresp_stim2;
+          design[ii].data.signal = "no";
     } else if ((design[ii].stim == choice_stim1) && (design[ii].signal == 'stop')) {
         design[ii].fixation = fix_stim;
         design[ii].first_stimulus = go_stim1;
@@ -84,15 +114,44 @@ for (var ii = 0; ii < design.length; ii++) {
         design[ii].data.stim = choice_stim2;
         design[ii].data.correct_response = "undefined";
         design[ii].data.signal = "yes";
-    } else if ((design[ii].stim == choice_stim1) && (design[ii].signal == 'ng')) {
-        design[ii].fixation = fix_stim;
+    } else if ((design[ii].stim == choice_stim1) && (design[ii].drink == drink_sd) && (design[ii].signal == 'ng')) {
+        design[ii].fixation = drink_sd;
         design[ii].first_stimulus = stop_stim1;
         design[ii].second_stimulus = stop_stim1;
         design[ii].data.stim = choice_stim1;
         design[ii].data.correct_response = "undefined";
         design[ii].data.signal = "ng";
-    } else if ((design[ii].stim == choice_stim2) && (design[ii].signal == 'ng')) {
-        design[ii].fixation = fix_stim;
+      } else if ((design[ii].stim == choice_stim1) && (design[ii].drink == water) && (design[ii].signal == 'ng')) {
+          design[ii].fixation = water;
+          design[ii].first_stimulus = stop_stim1;
+          design[ii].second_stimulus = stop_stim1;
+          design[ii].data.stim = choice_stim1;
+          design[ii].data.correct_response = "undefined";
+          design[ii].data.signal = "ng";
+      }    else if ((design[ii].stim == choice_stim1) && (design[ii].drink == blank) && (design[ii].signal == 'ng')) {
+              design[ii].fixation = blank;
+              design[ii].first_stimulus = stop_stim1;
+              design[ii].second_stimulus = stop_stim1;
+              design[ii].data.stim = choice_stim1;
+              design[ii].data.correct_response = "undefined";
+              design[ii].data.signal = "ng";
+        }  else if ((design[ii].stim == choice_stim2) && (design[ii].drink == blank) && (design[ii].signal == 'ng')) {
+            design[ii].fixation = blank;
+            design[ii].first_stimulus = stop_stim2;
+            design[ii].second_stimulus = stop_stim2;
+            design[ii].data.stim = choice_stim2;
+            design[ii].data.correct_response = "undefined";
+            design[ii].data.signal = "ng";
+    }  else if ((design[ii].stim == choice_stim2) && (design[ii].drink == water) && (design[ii].signal == 'ng')) {
+        design[ii].fixation = water;
+        design[ii].first_stimulus = stop_stim2;
+        design[ii].second_stimulus = stop_stim2;
+        design[ii].data.stim = choice_stim2;
+        design[ii].data.correct_response = "undefined";
+        design[ii].data.signal = "ng";
+      }
+    else if ((design[ii].stim == choice_stim2) && (design[ii].drink == drink_sd) && (design[ii].signal == 'ng')) {
+        design[ii].fixation = drink_sd;
         design[ii].first_stimulus = stop_stim2;
         design[ii].second_stimulus = stop_stim2;
         design[ii].data.stim = choice_stim2;

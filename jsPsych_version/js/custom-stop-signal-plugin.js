@@ -98,6 +98,7 @@ jsPsych.plugins["custom-stop-signal-plugin"] = (function() {
 
     // define the first and second image (note that u need to specify the id attribute as jspsych-image-keyboard-response-stimulus!)
     var fix = '<img src="'+trial.fixation+'"id="jspsych-image-keyboard-response-stimulus"></img>';
+    var drinks = '<img src="'+trial.drink+'"id="jspsych-image-keyboard-response-stimulus"></img>';
     var new_html = '<img src="'+trial.stimulus1+'" id="jspsych-image-keyboard-response-stimulus"></img>';
     var new_html_2 = '<img src="'+trial.stimulus2+'" id="jspsych-image-keyboard-response-stimulus"></img>';
 
@@ -108,6 +109,7 @@ jsPsych.plugins["custom-stop-signal-plugin"] = (function() {
 
     // draw the first images
     display_element.innerHTML = fix;
+    
 
     // store response
     var response = {
@@ -139,6 +141,7 @@ jsPsych.plugins["custom-stop-signal-plugin"] = (function() {
 
       // clear the display
       display_element.innerHTML = '';
+
 
       // move on to the next trial
       jsPsych.finishTrial(trial_data);
