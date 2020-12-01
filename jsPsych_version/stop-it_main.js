@@ -1044,13 +1044,19 @@ var block_procedure_water = {
         repetitions: 1, // add one because the first block is the practice block
 
       };
+      var array = [block_procedure_blank, block_procedure_water, block_procedure_sd];
+      var shuffle = jsPsych.randomization.shuffleNoRepeats(array);
+
       var block_procedure = {
 
-          timeline: [block_procedure_blank, block_procedure_water, block_procedure_sd],
+          timeline: shuffle,
+
           randomize_order: true,
+
           repetitions: 1, // add one because the first block is the practice block
 
         };
+
 
 // end of the experiment
 
@@ -1076,8 +1082,8 @@ var end_procedure = {
 
 // finally, push all the procedures to the overall timeline
 
-timeline.push(start_procedure, block_procedure_practice, block_procedure, end_procedure)
-
+//timeline.push(start_procedure, block_procedure_practice, block_procedure, end_procedure)
+timeline.push( block_procedure, end_procedure)
 
 
 
