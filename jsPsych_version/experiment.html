@@ -1451,15 +1451,21 @@ DESCRIPTION: This is the jsPsych version of the stop-signal task
   };
 
   // timeline_variables determine the stimuli in the 'stimulus' trial
+  var fix = {
+    type: 'html-keyboard-response',
+    stimulus: '<div style="font-size:60px;">+</div>',
+    choices: jsPsych.NO_KEYS,
+    trial_duration: 250,
+  };
   var trial_procedure_water = {
-    timeline: [blank_ITI, held_down_node, stimulus, feedback_node, evaluate_end_if_practice],
+    timeline: [blank_ITI, held_down_node, fix, stimulus, feedback_node, evaluate_end_if_practice],
     timeline_variables: design1,
     randomize_order: true,
     repetitions: NdesignReps_exp,
   };
   var trial_procedure_sd = {
 
-    timeline: [blank_ITI, held_down_node, stimulus, feedback_node, evaluate_end_if_practice],
+    timeline: [blank_ITI, held_down_node, fix, stimulus, feedback_node, evaluate_end_if_practice],
 
     timeline_variables: design2,
 
@@ -1470,7 +1476,7 @@ DESCRIPTION: This is the jsPsych version of the stop-signal task
   };
   var trial_procedure_blank = {
 
-    timeline: [blank_ITI, held_down_node, stimulus, feedback_node, evaluate_end_if_practice],
+    timeline: [blank_ITI, held_down_node, fix, stimulus, feedback_node, evaluate_end_if_practice],
 
     timeline_variables: design3,
 
@@ -1495,7 +1501,7 @@ DESCRIPTION: This is the jsPsych version of the stop-signal task
 
   // again: combine the following screen in one timeline, which constitues of the procedure of one block
   var block_procedure_practice = {
-    timeline: [block_start, block_get_ready, trial_procedure_practice, block_feedback],
+    timeline: [block_start, block_get_ready, fix, trial_procedure_practice, block_feedback],
     randomize_order: false,
     repetitions: 1, // add one because the first block is the practice block
   };
@@ -1550,8 +1556,8 @@ DESCRIPTION: This is the jsPsych version of the stop-signal task
   };
 
   // finally, push all the procedures to the overall timeline
-  //timeline.push(start_procedure, block_procedure_practice, block_procedure, end_procedure)
-  timeline.push( block_procedure, end_procedure)
+  timeline.push(start_procedure, block_procedure_practice, block_procedure, end_procedure)
+
 
   /* #########################################################################
   the functions that save the data and initiates the experiment

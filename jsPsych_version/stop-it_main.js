@@ -957,9 +957,15 @@ var evaluate_end_if_practice = {
 };
 
 // timeline_variables determine the stimuli in the 'stimulus' trial
+var fix = {
+  type: 'html-keyboard-response',
+  stimulus: '<div style="font-size:60px;">+</div>',
+  choices: jsPsych.NO_KEYS,
+  trial_duration: 250,
+};
 var trial_procedure_water = {
 
-  timeline: [blank_ITI, held_down_node, stimulus, feedback_node, evaluate_end_if_practice],
+  timeline: [blank_ITI, held_down_node, fix, stimulus, feedback_node, evaluate_end_if_practice],
 
   timeline_variables: design1,
 
@@ -971,7 +977,7 @@ var trial_procedure_water = {
 
 var trial_procedure_sd = {
 
-  timeline: [blank_ITI, held_down_node, stimulus, feedback_node, evaluate_end_if_practice],
+  timeline: [blank_ITI, held_down_node, fix, stimulus, feedback_node, evaluate_end_if_practice],
 
   timeline_variables: design2,
 
@@ -982,7 +988,7 @@ var trial_procedure_sd = {
 };
 var trial_procedure_blank = {
 
-  timeline: [blank_ITI, held_down_node, stimulus, feedback_node, evaluate_end_if_practice],
+  timeline: [blank_ITI, held_down_node, fix, stimulus, feedback_node, evaluate_end_if_practice],
 
   timeline_variables: design3,
 
@@ -995,7 +1001,7 @@ var trial_procedure_blank = {
 
 var trial_procedure_practice = {
 
-    timeline: [blank_ITI, held_down_node, stimulus, feedback_node, evaluate_end_if_practice],
+    timeline: [blank_ITI, held_down_node, fix, stimulus, feedback_node, evaluate_end_if_practice],
 
     timeline_variables: design,
 
@@ -1082,8 +1088,8 @@ var end_procedure = {
 
 // finally, push all the procedures to the overall timeline
 
-//timeline.push(start_procedure, block_procedure_practice, block_procedure, end_procedure)
-timeline.push( block_procedure, end_procedure)
+timeline.push(start_procedure, block_procedure_practice, block_procedure, end_procedure)
+
 
 
 
