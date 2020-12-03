@@ -37,7 +37,7 @@ Create the design based on the input from 'experiment_variables.js'
 // This design will later be repeated a few times for each block
 // (number of repetitions is also defined in 'experiment_variables.js')
 var ngostop = 2 / nprop // covert proportion to trial numbers. E.g. 1/5 = 1 stop signal and 4 go
-var ntrials = ngostop * 2 // total number of trials in basic design (2 two choice stimuli x ngostop)
+var ntrials = ngostop * 3 // total number of trials in basic design (2 two choice stimuli x ngostop)
 var signalArray = Array(ngostop - 1).fill('go'); // no-signal trials
 signalArray[ngostop - 1] = ('stop'); // stop-signal trials
 signalArray[ngostop - 2] = ('ng'); // nogo-signal trials
