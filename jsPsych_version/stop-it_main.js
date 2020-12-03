@@ -961,7 +961,7 @@ var fix = {
   type: 'html-keyboard-response',
   stimulus: '<div style="font-size:60px;">+</div>',
   choices: jsPsych.NO_KEYS,
-  trial_duration: 500,
+  trial_duration: 250,
 };
 var trial_procedure_water = {
 
