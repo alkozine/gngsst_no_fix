@@ -47,21 +47,21 @@ var nprop = 1/4;
 // E.g. when NdesignReps = 8 and nprop = 1/4 (see above), the number of trials per block = 64 (8*8)
 // Do this for the practice and experimental phases (note: practice can never be higher than exp)
 
-var NdesignReps_practice = 1;
-var NdesignReps_exp = 8;
+var NdesignReps_practice = 1/2;
+var NdesignReps_exp = 1/2;
 
 // Number of experimental blocks (excluding the first practice block).
 // Note that NexpBl = 0 will still run the practice block
 
-var NexpBL = 4;
+var NexpBL = 3;
 
 
 // ----- CUSTOMISE THE TIME INTERVALS (in milliseconds)-----
 
 var ITI = 500;    // fixed blank intertrial interval
-var FIX = 250;
-var MAXRT = 1250; // fixed maximum reaction time
-var SSD = 200;    // start value for the SSD tracking procedure; will be updated throughout the experiment
+var FIX = 800;
+var MAXRT = 700; // fixed maximum reaction time
+var SSD = 250;    // start value for the SSD tracking procedure; will be updated throughout the experiment
 var SSDstep = 50; // step size of the SSD tracking procedure; this is also the lowest possible SSD
 var iFBT = 750;   // immediate feedback interval (during the practice phase)
 var bFBT = 15000; // break interval between blocks
