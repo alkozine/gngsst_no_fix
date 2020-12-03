@@ -1489,7 +1489,7 @@ DESCRIPTION: This is the jsPsych version of the stop-signal task
 
   var trial_procedure_practice = {
 
-      timeline: [blank_ITI, held_down_node, fix, stimulus, feedback_node, evaluate_end_if_practice],
+      timeline: [blank_ITI, held_down_node, stimulus, feedback_node, evaluate_end_if_practice],
 
       timeline_variables: design,
 
@@ -1501,7 +1501,7 @@ DESCRIPTION: This is the jsPsych version of the stop-signal task
 
   // again: combine the following screen in one timeline, which constitues of the procedure of one block
   var block_procedure_practice = {
-    timeline: [block_start, block_get_ready, trial_procedure_practice, block_feedback],
+    timeline: [block_start, block_get_ready, fix, trial_procedure_practice, block_feedback],
     randomize_order: false,
     repetitions: 1, // add one because the first block is the practice block
   };
