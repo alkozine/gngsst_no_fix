@@ -41,7 +41,7 @@ var choice_stim2 = 'right';
 // E.g., when nprop = 1/4 (or .25), then the basic design contains 8 trials (2 * 4).
 // The following values are allowed: 1/6, 1/5, 1/4, 1/3. 1/4 = default (recommended) value
 
-var nprop = 1/6;
+var nprop = 1/7;
 
 // How many times should we repeat the basic design per block?
 // E.g. when NdesignReps = 8 and nprop = 1/4 (see above), the number of trials per block = 64 (8*8)
@@ -59,7 +59,7 @@ var NexpBL = 3;
 // ----- CUSTOMISE THE TIME INTERVALS (in milliseconds)-----
 
 var ITI = 500;    // fixed blank intertrial interval
-var FIX = 800;
+var FIX = 500;
 var MAXRT = 700; // fixed maximum reaction time
 var SSD = 250;    // start value for the SSD tracking procedure; will be updated throughout the experiment
 var SSDstep = 50; // step size of the SSD tracking procedure; this is also the lowest possible SSD
