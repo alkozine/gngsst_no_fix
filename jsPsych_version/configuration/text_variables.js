@@ -35,6 +35,8 @@ incorrect_stop_msg = '<p> remember: try to stop </p>'
 no_signal_header = "<p><b>GO TRIALS: </b></p>"
 avg_rt_msg = "<p>Average response time = %d milliseconds</p>"
 prop_miss_msg = "<p>Proportion missed go = %.2f (should be 0)</p>"
+ng_signal_header = "<p><b>No-GO TRIALS: </b></p>"
+number_corr_msg = "<p>Proportion correct stops = %.2f (should be close to 1)</p>" + "<br>"
 stop_signal_header = "<p><b>STOP-SIGNAL TRIALS: </b></p>"
 prop_corr_msg = "<p>Proportion correct stops = %.2f (should be close to 0.5)</p>" + "<br>"
 next_block_msg = "<p>You can take a short break, the next block starts in <span id='timer'>15</span></p>"

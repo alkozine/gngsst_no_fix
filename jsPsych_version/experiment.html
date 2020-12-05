@@ -276,7 +276,7 @@ DESCRIPTION: This is the jsPsych version of the stop-signal task
         design[i].first_stimulus = stop_stim2;
 
         design[i].second_stimulus = stop_stim2;
-        
+
         design[i].data.stim = choice_stim2;
 
         design[i].data.correct_response = "undefined";
@@ -1326,6 +1326,22 @@ DESCRIPTION: This is the jsPsych version of the stop-signal task
       var prop_ss_Correct = Math.round(ss_trials.filter({
         correct: true
       }).count() / ss_trials.count() * 1000) / 1000;
+      var ng_trials = jsPsych.data.get().filter({
+
+        trial_type: 'custom-stop-signal-plugin',
+
+        block_i: block_ind,
+
+        signal: 'ng'
+
+      });
+
+      var prop_ng_Correct = Math.round(ng_trials.filter({
+
+        correct: true
+
+      }).count() / ng_trials.count() * 1000) / 1000;
+
       // in the last block, we should not say that there will be a next block
       if (block_ind == NexpBL){
         var next_block_text = final_block_msg
@@ -1348,6 +1364,8 @@ DESCRIPTION: This is the jsPsych version of the stop-signal task
         no_signal_header +
         sprintf(avg_rt_msg,avg_nsRT) +
         sprintf(prop_miss_msg,prop_ns_Missed) +
+        ng_signal_header +
+        sprintf(number_corr_msg,prop_ng_Correct) +
         stop_signal_header +
         sprintf(prop_corr_msg,prop_ss_Correct) +
         next_block_text

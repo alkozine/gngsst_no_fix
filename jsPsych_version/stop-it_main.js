@@ -36,8 +36,8 @@ Create the design based on the input from 'experiment_variables.js'
 // Since we have two stimuli, the number of trials of the basic design = 2 * nstim
 // This design will later be repeated a few times for each block
 // (number of repetitions is also defined in 'experiment_variables.js')
-var ngostop = 1 / nprop // covert proportion to trial numbers. E.g. 1/5 = 1 stop signal and 4 go
-var ntrials = ngostop * 3 // total number of trials in basic design (2 two choice stimuli x ngostop)
+var ngostop = 2 / nprop // covert proportion to trial numbers. E.g. 1/5 = 1 stop signal and 4 go
+var ntrials = ngostop * 2 // total number of trials in basic design (2 two choice stimuli x ngostop)
 var signalArray = Array(ngostop - 1).fill('go'); // no-signal trials
 signalArray[ngostop - 1] = ('stop'); // stop-signal trials
 signalArray[ngostop - 2] = ('ng'); // nogo-signal trials
@@ -869,6 +869,15 @@ var block_feedback = {
         var prop_ss_Correct = Math.round(ss_trials.filter({
             correct: true
         }).count() / ss_trials.count() * 1000) / 1000;
+        var ng_trials = jsPsych.data.get().filter({
+            trial_type: 'custom-stop-signal-plugin',
+            block_i: block_ind,
+            signal: 'ng'
+        });
+
+        var prop_ng_Correct = Math.round(ng_trials.filter({
+            correct: true
+        }).count() / ng_trials.count() * 1000) / 1000;
 
         // in the last block, we should not say that there will be a next block
         if (block_ind == NexpBL) {
@@ -893,6 +902,8 @@ var block_feedback = {
             no_signal_header +
             sprintf(avg_rt_msg, avg_nsRT) +
             sprintf(prop_miss_msg, prop_ns_Missed) +
+            ng_signal_header +
+            sprintf(number_corr_msg,prop_ng_Correct) +
             stop_signal_header +
             sprintf(prop_corr_msg, prop_ss_Correct) +
             next_block_text
