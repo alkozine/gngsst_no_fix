@@ -36,18 +36,6 @@ jsPsych.plugins["custom-stop-signal-plugin"] = (function() {
         default: null,
         description: 'Duration of the fixation.'
       },
-      drink: {
-        type:  jsPsych.plugins.parameterType.IMAGE,
-        pretty_name: 'Drink',
-        default: undefined,
-        description: 'The soft drink to be displayed'
-      },
-      drink_duration: {
-        type: jsPsych.plugins.parameterType.INT,
-        pretty_name: 'Drink duration',
-        default: null,
-        description: 'Duration of the SD.'
-      },
       stimulus1: {
         type: jsPsych.plugins.parameterType.IMAGE,
         pretty_name: 'First stimulus',
@@ -109,7 +97,7 @@ jsPsych.plugins["custom-stop-signal-plugin"] = (function() {
 
     // draw the first images
     display_element.innerHTML = fix;
-    
+
 
     // store response
     var response = {
@@ -132,6 +120,7 @@ jsPsych.plugins["custom-stop-signal-plugin"] = (function() {
       var trial_data = {
         "raw_rt": response.rt,
         "rt": response.rt - trial.fixation_duration,
+        "drink": trial.fixation,
         "first_stimulus": trial.stimulus1,
         "second_stimulus": trial.stimulus2,
         "onset_of_first_stimulus": trial.fixation_duration,

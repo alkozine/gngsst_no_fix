@@ -276,7 +276,7 @@ DESCRIPTION: This is the jsPsych version of the stop-signal task
         design[i].first_stimulus = stop_stim2;
 
         design[i].second_stimulus = stop_stim2;
-
+        
         design[i].data.stim = choice_stim2;
 
         design[i].data.correct_response = "undefined";
@@ -1384,7 +1384,7 @@ DESCRIPTION: This is the jsPsych version of the stop-signal task
       // the next piece of codes orders the columns of the data file
       var d = selected_data.values() // get the data values
       // make an array that specifies the order of the object properties
-      var arr = ['participantID','age','gender','block_i','trial_i','stim','signal','SSD','response','rt','correct','focus','Fullscreen',
+      var arr = ['participantID','age','gender','block_i','trial_i','stim','drink','signal','SSD','response','rt','correct','focus','Fullscreen',
       'time_elapsed','browser_name','browser_version','os_name','os_version','tablet','mobile','screen_resolution','window_resolution'];
       new_arr = [] // we will fill this array with the ordered data
       function myFunction(item) { // this is function is called in the arr.forEach call below
@@ -1590,13 +1590,13 @@ DESCRIPTION: This is the jsPsych version of the stop-signal task
       if (online){
         var subjID = jsPsych.data.get().last(1).values()[0]['participantID'];
         if (data.trial_index == id_index){ // write header
-          data_row = "participantID,age,gender,block_i,trial_i,stim,signal,SSD,response,rt,correct," +
+          data_row = "participantID,age,gender,block_i,trial_i,stim,drink,signal,SSD,response,rt,correct," +
                         "focus,Fullscreen,time_elapsed,browser_name,browser_version,os_name,os_version," +
                         "tablet,mobile,screen_resolution,window_resolution\n"
           appendData('SST_data_'+ subjID +'.csv',data_row)
         } else if (data.trial_type == 'custom-stop-signal-plugin'){ // append data each stimulus
           data_row = data.participantID + ',' + data.age + ',' + data.gender + ',' + data.block_i + ',' + data.trial_i + ',' +
-                        data.stim + ',' + data.signal + ',' + data.SSD + ',' + data.response + ',' + data.rt + ',' + data.correct + ',' +
+                        data.stim + ',' + data.drink + ',' + data.signal + ',' + data.SSD + ',' + data.response + ',' + data.rt + ',' + data.correct + ',' +
                         data.focus + ',' + data.Fullscreen + ',' + data.time_elapsed + ',' + data.browser_name + ',' +
                         data.browser_version + ',' + data.os_name + ',' + data.os_version + ',' + data.tablet + ',' + data.mobile + ',' +
                         data.screen_resolution + ',' + data.window_resolution + '\n'
