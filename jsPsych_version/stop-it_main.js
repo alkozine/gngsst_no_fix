@@ -859,6 +859,14 @@ var block_feedback = {
         }).count() / ns_trials.count() * 1000) / 1000;
 
         var prop_ns_Incorrect = Math.round((1 - (prop_ns_Correct + prop_ns_Missed)) * 1000) / 1000;
+        var go_count = ns_trials.count();
+        var go_correct = ns_trials.filter({
+          correct: true
+        }).count();
+        var go_miss = ns_trials.filter({
+          key_press: null
+        }).count();
+        var go_wrong = Math.round(go_count - go_correct - go_miss);
 
         var ss_trials = jsPsych.data.get().filter({
             trial_type: 'custom-stop-signal-plugin',
@@ -869,6 +877,13 @@ var block_feedback = {
         var prop_ss_Correct = Math.round(ss_trials.filter({
             correct: true
         }).count() / ss_trials.count() * 1000) / 1000;
+        var ss_count = ss_trials.count();
+        var ss_correct = ss_trials.filter({
+          correct: true
+        }).count();
+        var ss_fail = ss_trials.filter({
+          correct: false
+        }).count();
         var ng_trials = jsPsych.data.get().filter({
             trial_type: 'custom-stop-signal-plugin',
             block_i: block_ind,
@@ -908,14 +923,21 @@ var block_feedback = {
         return [
             no_signal_header +
             sprintf(avg_rt_msg, avg_nsRT) +
-            sprintf(prop_miss_msg, prop_ns_Missed) +
+            sprintf(go_number_msg,go_count) +
+            sprintf(go_correct_msg,go_correct) +
+            sprintf(go_wrong_msg,go_wrong) +
+            sprintf(go_miss_msg,go_miss) +
+            //sprintf(prop_miss_msg, prop_ns_Missed) +
             ng_signal_header +
             sprintf(number_corr_msg,prop_ng_Correct) +
             sprintf(ng_number_msg,ng_count) +
             sprintf(ng_correct_msg,ng_correct) +
             sprintf(ng_fail_msg,ng_fail) +
             stop_signal_header +
-            sprintf(prop_corr_msg, prop_ss_Correct) +
+            //sprintf(prop_corr_msg,prop_ss_Correct) +
+            sprintf(ss_number_msg,ss_count) +
+            sprintf(ss_correct_msg,ss_correct) +
+            sprintf(ss_fail_msg,ss_fail) +
             next_block_text
         ]
     },

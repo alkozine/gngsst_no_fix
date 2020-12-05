@@ -33,14 +33,21 @@ incorrect_stop_msg = '<p> remember: try to stop </p>'
 
 // block feedback
 no_signal_header = "<p><b>GO TRIALS: </b></p>"
+go_number_msg = "<p>Total number:  %f trials</p>"
+go_correct_msg = "<p>Correct: %f</p>"
+go_wrong_msg = "<p>Wrong key pressed: %f</p>"
+go_miss_msg = "<p>Fail to answer: %f</p>" + "<br>"
 avg_rt_msg = "<p>Average response time = %d milliseconds</p>"
 prop_miss_msg = "<p>Proportion missed go = %.2f (should be 0)</p>"
 ng_signal_header = "<p><b>NO-GO TRIALS: </b></p>"
 number_corr_msg = "<p>Proportion correct stops = %.2f (should be close to 1)</p>" + "<br>"
 ng_number_msg = "<p>Total number:  %f trials</p>"
-ng_correct_msg = "<p>Correct stops: %f</p>" 
-ng_fail_msg = "<p>Failed stops: %f</p>" + "<br>"
+ng_correct_msg = "<p>Correct stops: %f</p>"
+ng_fail_msg = "<p>Fail to stops: %f</p>" + "<br>"
 stop_signal_header = "<p><b>STOP-SIGNAL TRIALS: </b></p>"
+ss_number_msg = "<p>Total number:  %f trials</p>"
+ss_correct_msg = "<p>Correct stops: %f</p>"
+ss_fail_msg = "<p>Failed stops: %f</p>" + "<br>"
 prop_corr_msg = "<p>Proportion correct stops = %.2f (should be close to 0.5)</p>" + "<br>"
 next_block_msg = "<p>You can take a short break, the next block starts in <span id='timer'>15</span></p>"
 final_block_msg = "<p>Press space to continue...</p>" // after the final block they don't need a break
