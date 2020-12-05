@@ -933,7 +933,7 @@ var block_feedback = {
             sprintf(go_miss_msg,go_miss) +
             //sprintf(prop_miss_msg, prop_ns_Missed) +
             ng_signal_header +
-            sprintf(number_corr_msg,prop_ng_Correct) +
+            //sprintf(number_corr_msg,prop_ng_Correct) +
             sprintf(ng_number_msg,ng_count) +
             sprintf(ng_correct_msg,ng_correct) +
             sprintf(ng_fail_msg,ng_fail) +
