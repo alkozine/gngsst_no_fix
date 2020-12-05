@@ -36,8 +36,8 @@ Create the design based on the input from 'experiment_variables.js'
 // Since we have two stimuli, the number of trials of the basic design = 2 * nstim
 // This design will later be repeated a few times for each block
 // (number of repetitions is also defined in 'experiment_variables.js')
-var ngostop = 2 / nprop // covert proportion to trial numbers. E.g. 1/5 = 1 stop signal and 4 go
-var ntrials = ngostop * 2 // total number of trials in basic design (2 two choice stimuli x ngostop)
+var ngostop = 1 / nprop // covert proportion to trial numbers. E.g. 1/5 = 1 stop signal and 4 go
+var ntrials = ngostop * 3 // total number of trials in basic design (2 two choice stimuli x ngostop)
 var signalArray = Array(ngostop - 1).fill('go'); // no-signal trials
 signalArray[ngostop - 1] = ('stop'); // stop-signal trials
 signalArray[ngostop - 2] = ('ng'); // nogo-signal trials
@@ -72,6 +72,7 @@ for (var ii = 0; ii < design.length; ii++) {
             design[ii].data.stim = choice_stim1;
             design[ii].data.correct_response = cresp_stim1;
             design[ii].data.signal = "no";
+          }
             else if ((design[ii].stim == choice_stim1) && (design[ii].drink == blank) && (design[ii].signal == 'go')) {
                 design[ii].fixation = blank;
                 design[ii].first_stimulus = go_stim1;
@@ -218,6 +219,7 @@ for (var ii = 0; ii < design1.length; ii++) {
             design1[ii].data.stim = choice_stim1;
             design1[ii].data.correct_response = cresp_stim1;
             design1[ii].data.signal = "no";
+          }
             else if ((design1[ii].stim == choice_stim1) && (design1[ii].drink == blank) && (design1[ii].signal == 'go')) {
                 design1[ii].fixation = blank;
                 design1[ii].first_stimulus = go_stim1;
@@ -363,6 +365,7 @@ for (var ii = 0; ii < design2.length; ii++) {
             design2[ii].data.stim = choice_stim1;
             design2[ii].data.correct_response = cresp_stim1;
             design2[ii].data.signal = "no";
+          }
             else if ((design2[ii].stim == choice_stim1) && (design2[ii].drink == blank) && (design2[ii].signal == 'go')) {
                 design2[ii].fixation = blank;
                 design2[ii].first_stimulus = go_stim1;
@@ -507,6 +510,7 @@ for (var ii = 0; ii < design3.length; ii++) {
             design3[ii].data.stim = choice_stim1;
             design3[ii].data.correct_response = cresp_stim1;
             design3[ii].data.signal = "no";
+          }
             else if ((design3[ii].stim == choice_stim1) && (design3[ii].drink == blank) && (design3[ii].signal == 'go')) {
                 design3[ii].fixation = blank;
                 design3[ii].first_stimulus = go_stim1;

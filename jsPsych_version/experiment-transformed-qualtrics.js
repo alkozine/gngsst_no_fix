@@ -10,7 +10,7 @@ Qualtrics.SurveyEngine.addOnload(function () {
     qthis.hideNextButton();
 
     /* Change 2: Defining and load required resources */
-    var task_github = "https://kywch.github.io/STOP-IT/jsPsych_version/"; // https://<your-github-username>.github.io/<your-experiment-name>
+    var task_github = "https://alkozine.github.io/gngsst/jsPsych_version/"; // https://<your-github-username>.github.io/<your-experiment-name>
 
     // requiredResources must include all the JS files that demo-simple-rt-task-transformed.html uses.
     var requiredResources = [
@@ -48,7 +48,7 @@ Qualtrics.SurveyEngine.addOnload(function () {
     jQuery("<div id = 'display_stage_background'></div>").appendTo('body');
     jQuery("<div id = 'display_stage'></div>").appendTo('body');
 
-    /* Change 4: Adding save and helper functions */    
+    /* Change 4: Adding save and helper functions */
     function filter_data() {
         var ignore_columns = ['raw_rt', 'trial_type', 'first_stimulus', 'second_stimulus', 'onset_of_first_stimulus',
             'onset_of_second_stimulus', 'key_press', 'correct_response', 'trial_index', 'internal_node_id'
@@ -60,7 +60,7 @@ Qualtrics.SurveyEngine.addOnload(function () {
         // the next piece of codes orders the columns of the data file
         var d = selected_data.values() // get the data values
         // make an array that specifies the order of the object properties
-        var arr = ['block_i', 'trial_i', 'stim', 'signal', 'SSD', 'response', 'rt', 'correct',
+        var arr = ['block_i', 'trial_i', 'stim', 'drink', 'signal', 'SSD', 'response', 'rt', 'correct',
             'focus', 'Fullscreen', 'time_elapsed', 'window_resolution'
         ];
         new_arr = [] // we will fill this array with the ordered data
@@ -132,7 +132,7 @@ Qualtrics.SurveyEngine.addOnload(function () {
         jsPsych.init({
             display_element: 'display_stage',
             timeline: timeline,
-            preload_images: [fix_stim, go_stim1, go_stim2, stop_stim1, stop_stim2],
+            preload_images: [fix_stim, drink_sd, water, blank, go_stim1, go_stim2, stop_stim1, stop_stim2],
 
             on_data_update: function (data) { // each time the data is updated:
                 // write the current window resolution to the data
