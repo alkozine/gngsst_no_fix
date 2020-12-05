@@ -53,7 +53,7 @@ var NdesignReps_exp = 1;
 // Number of experimental blocks (excluding the first practice block).
 // Note that NexpBl = 0 will still run the practice block
 
-var NexpBL = 3;
+var NexpBL = 4;
 
 
 // ----- CUSTOMISE THE TIME INTERVALS (in milliseconds)-----
