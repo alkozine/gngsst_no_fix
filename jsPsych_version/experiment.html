@@ -1341,6 +1341,13 @@ DESCRIPTION: This is the jsPsych version of the stop-signal task
         correct: true
 
       }).count() / ng_trials.count() * 1000) / 1000;
+      var ng_count = ng_trials.count();
+      var ng_correct = ng_trials.filter({
+        correct: true
+      }).count();
+      var ng_fail = ng_trials.filter({
+        correct: false
+      }).count();
 
       // in the last block, we should not say that there will be a next block
       if (block_ind == NexpBL){
@@ -1365,7 +1372,10 @@ DESCRIPTION: This is the jsPsych version of the stop-signal task
         sprintf(avg_rt_msg,avg_nsRT) +
         sprintf(prop_miss_msg,prop_ns_Missed) +
         ng_signal_header +
-        sprintf(number_corr_msg,prop_ng_Correct) +
+        //sprintf(number_corr_msg,prop_ng_Correct) +
+        sprintf(ng_number_msg,ng_count) +
+        sprintf(ng_correct_msg,ng_correct) +
+        sprintf(ng_fail_msg,ng_fail) +
         stop_signal_header +
         sprintf(prop_corr_msg,prop_ss_Correct) +
         next_block_text
