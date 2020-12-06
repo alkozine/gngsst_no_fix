@@ -1072,7 +1072,7 @@ var block_procedure_practice = {
 
 var block_procedure_water = {
 
-    timeline: [block_start, block_get_ready, trial_procedure_sd, block_feedback],
+    timeline: [block_start, block_get_ready, trial_procedure_water, block_feedback],
 
     randomize_order: false,
 
