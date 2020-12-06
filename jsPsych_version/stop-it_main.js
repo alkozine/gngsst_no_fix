@@ -1066,7 +1066,7 @@ var block_procedure_practice = {
 
   randomize_order: false,
 
-  repetitions: 0, // add one because the first block is the practice block
+  repetitions: 1, // add one because the first block is the practice block
 
 };
 
