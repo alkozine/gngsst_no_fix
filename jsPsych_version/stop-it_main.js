@@ -668,7 +668,7 @@ var id = {
 
     jsPsych.data.addProperties({
 
-      id: code
+      workerid: code
 
     });
 
