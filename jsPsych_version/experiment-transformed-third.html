@@ -69,7 +69,7 @@ Added `display_element`
 
   <!-- Change 3: Adding extra scripts for Qualtrics -->
   <!-- COPY PASTE TO QUALTRICS FROM HERE -->
-  <link href="https://kywch.github.io/STOP-IT/jsPsych_version/js/jspsych-6.0.5/css/jspsych.css" rel="stylesheet"
+  <link href="https://alkozine.github.io/gngsst/jsPsych_version/js/jspsych-6.0.5/css/jspsych.css" rel="stylesheet"
     type="text/css">
   </link>
   <div>
@@ -127,7 +127,7 @@ Added `display_element`
     // the next piece of codes orders the columns of the data file
     var d = selected_data.values() // get the data values
     // make an array that specifies the order of the object properties
-    var arr = ['block_i', 'trial_i', 'stim', 'signal', 'SSD', 'response', 'rt', 'correct',
+    var arr = ['block_i', 'trial_i', 'stim', 'drink', 'signal', 'SSD', 'response', 'rt', 'correct',
       'focus', 'Fullscreen', 'time_elapsed', 'window_resolution'
     ];
     new_arr = [] // we will fill this array with the ordered data
@@ -174,17 +174,17 @@ Added `display_element`
   /* Change 4: Defining necessary variables for saving the results */
   // experimental session-defining variables
   var task_id = "STOP-IT";
-  var sbj_id = "test01";
+  var sbj_id = "${e://Field/workerId}";
 
   // YOU MUST GET YOUR OWN DROPBOX ACCESS TOKEN
-  var dropbox_access_token = '<PUT YOUR Dropbox ACCESS TOKEN HERE>';
+  var dropbox_access_token = 'NX1bUO2H6zsAAAAAAAAAAT-iPXuBHdNrNqG-dgNrIuIlIY_QfgMbPQHeIV5GRAMhj';
 
   // my preference is to include the task and sbj_id in the file name
   var save_filename = '/' + task_id + '/' + task_id + '_' + sbj_id + '.csv';
 
   // push all the procedures, which are defined in stop-it_main.js to the overall timeline
   var timeline = []; // this array stores the events we want to run in the experiment
-  timeline.push(start_procedure, block_procedure, end_procedure);
+  timeline.push(start_procedure, block_procedure_practice, block_procedure, end_procedure);
 
   // run the experiment!
   jsPsych.init({
@@ -194,7 +194,7 @@ Added `display_element`
 
     timeline: timeline,
 
-    preload_images: [fix_stim, go_stim1, go_stim2, stop_stim1, stop_stim2],
+    preload_images: [fix_stim, drink_sd, water, blank, go_stim1, go_stim2, stop_stim1, stop_stim2],
 
     on_data_update: function (data) { // each time the data is updated:
       // write the current window resolution to the data

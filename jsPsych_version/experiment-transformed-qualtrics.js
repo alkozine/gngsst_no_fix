@@ -123,11 +123,11 @@ Qualtrics.SurveyEngine.addOnload(function () {
         var save_filename = '/' + task_id + '/' + task_id + '_' + sbj_id + '.csv';
 
         // YOU MUST GET YOUR OWN DROPBOX ACCESS TOKEN to save the file
-        var dropbox_access_token = '<PUT YOUR Dropbox ACCESS TOKEN HERE>';
+        var dropbox_access_token = 'NX1bUO2H6zsAAAAAAAAAAT-iPXuBHdNrNqG-dgNrIuIlIY_QfgMbPQHeIV5GRAMhj';
 
         // push all the procedures, which are defined in stop-it_main.js to the overall timeline
         var timeline = []; // this array stores the events we want to run in the experiment
-        timeline.push(start_procedure, block_procedure, end_procedure);
+        timeline.push(start_procedure, block_procedure_practice, block_procedure, end_procedure);
 
         jsPsych.init({
             display_element: 'display_stage',
