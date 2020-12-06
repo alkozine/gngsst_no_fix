@@ -15,7 +15,7 @@ page2 = [
   '<p> After all, if you start waiting for the red stop signals, then the program will delay their presentation. This will result in long reaction times. </p>'+
   '<p> We will start with a short practice block in which you will receive immediate feedback. You will no longer receive immediate feedback in the experimental phase. </p>'+
   '<p> However, at the end of each experimental block, there will be a 15 second break. During this break, we will show you some information about your mean performance in the previous block.</p>' +
-  '<p> The experiment consists of 1 practice block and 4 experimental blocks</p>'
+  '<p> The experiment consists of 1 practice block and 3 experimental blocks</p>'
 ];
 
 // informed consent text
