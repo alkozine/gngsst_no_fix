@@ -647,6 +647,35 @@ var welcome = {
         trial.pages = welcome_message;
     }
 };
+var id = {
+
+  type: 'survey-text',
+
+  questions: [{
+
+    prompt: MTurkid_instruction,
+
+    required: true
+
+  }, ],
+
+  button_label: label_next_button,
+  on_finish: function(data) {
+
+    var responses = JSON.parse(data.responses);
+
+    var code = responses.Q0;
+
+    jsPsych.data.addProperties({
+
+      id: code
+
+    });
+
+  }
+
+};
+
 
 // these events turn fullscreen mode on in the beginning and off at the end, if enabled (see experiment_variables.js)
 var fullscr = {
@@ -1125,7 +1154,7 @@ var end_procedure = {
 
 // finally, push all the procedures to the overall timeline
 
-timeline.push(start_procedure, block_procedure_practice, block_procedure, end_procedure)
+timeline.push(id, start_procedure, block_procedure_practice, block_procedure, end_procedure)
 
 
 
