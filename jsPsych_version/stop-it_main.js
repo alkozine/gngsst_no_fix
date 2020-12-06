@@ -339,7 +339,7 @@ for (var ii = 0; ii < design1.length; ii++) {
 };
 if (flag_debug) {
     console.log(design1); // uncomment to print the design in the browser's console
-}
+};
 
 var design2 = jsPsych.randomization.factorial(factors, 1);
 
@@ -485,7 +485,7 @@ for (var ii = 0; ii < design2.length; ii++) {
 };
 if (flag_debug) {
     console.log(design2); // uncomment to print the design2 in the browser's console
-}
+};
 var design3 = jsPsych.randomization.factorial(factors, 1);
 
 // modify the design to make it compatible with the custom stop signal plugin
@@ -630,7 +630,7 @@ for (var ii = 0; ii < design3.length; ii++) {
 };
 if (flag_debug) {
     console.log(design3); // uncomment to print the design in the browser's console
-}
+};
 /* #########################################################################
   Define the individual events/trials that make up the experiment
 ######################################################################### */
