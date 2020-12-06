@@ -1154,7 +1154,7 @@ var end_procedure = {
 
 // finally, push all the procedures to the overall timeline
 
-timeline.push(id, start_procedure, block_procedure_practice, block_procedure, end_procedure)
+timeline.push(start_procedure, id, block_procedure_practice, block_procedure, end_procedure)
 
 
 
