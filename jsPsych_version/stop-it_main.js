@@ -1066,7 +1066,7 @@ var block_procedure_practice = {
 
   randomize_order: false,
 
-  repetitions: NexpBL + 1, // add one because the first block is the practice block
+  repetitions: 1, // add one because the first block is the practice block
 
 };
 
@@ -1076,7 +1076,7 @@ var block_procedure_water = {
 
     randomize_order: false,
 
-    repetitions: NexpBL + 1, // add one because the first block is the practice block
+    repetitions: 1, // add one because the first block is the practice block
 
   };
   var block_procedure_sd = {
@@ -1085,7 +1085,7 @@ var block_procedure_water = {
 
       randomize_order: false,
 
-      repetitions: NexpBL + 1, // add one because the first block is the practice block
+      repetitions: 1, // add one because the first block is the practice block
 
     };
     var block_procedure_blank = {
@@ -1094,7 +1094,7 @@ var block_procedure_water = {
 
         randomize_order: false,
 
-        repetitions: NexpBL + 1, // add one because the first block is the practice block
+        repetitions: 1, // add one because the first block is the practice block
 
       };
       var array = [block_procedure_blank, block_procedure_water, block_procedure_sd];
