@@ -395,42 +395,42 @@ for (var ii = 0; ii < design2.length; ii++) {
           design2[ii].data.correct_response = cresp_stim2;
           design2[ii].data.signal = "no";
     } else if ((design2[ii].stim == choice_stim1) && (design2[ii].drink == water) && (design2[ii].signal == 'stop')) {
-        design2[ii].fixation = water;
+        design2[ii].fixation = drink_sd;
         design2[ii].first_stimulus = go_stim1;
         design2[ii].second_stimulus = stop_stim1;
         design2[ii].data.stim = choice_stim1;
         design2[ii].data.correct_response = "undefined";
         design2[ii].data.signal = "yes";
       } else if ((design2[ii].stim == choice_stim1) && (design2[ii].drink == drink_sd) && (design2[ii].signal == 'stop')) {
-          design2[ii].fixation = water;
+          design2[ii].fixation = drink_sd;
           design2[ii].first_stimulus = go_stim1;
           design2[ii].second_stimulus = stop_stim1;
           design2[ii].data.stim = choice_stim1;
           design2[ii].data.correct_response = "undefined";
           design2[ii].data.signal = "yes";
         } else if ((design2[ii].stim == choice_stim1) && (design2[ii].drink == blank) && (design2[ii].signal == 'stop')) {
-              design2[ii].fixation = water;
+              design2[ii].fixation = drink_sd;
               design2[ii].first_stimulus = go_stim1;
               design2[ii].second_stimulus = stop_stim1;
               design2[ii].data.stim = choice_stim1;
               design2[ii].data.correct_response = "undefined";
               design2[ii].data.signal = "yes";
     } else if ((design2[ii].stim == choice_stim2) && (design2[ii].drink == water) && (design2[ii].signal == 'stop')) {
-        design2[ii].fixation = water;
+        design2[ii].fixation = drink_sd;
         design2[ii].first_stimulus = go_stim2;
         design2[ii].second_stimulus = stop_stim2;
         design2[ii].data.stim = choice_stim2;
         design2[ii].data.correct_response = "undefined";
         design2[ii].data.signal = "yes";
       } else if ((design2[ii].stim == choice_stim2) && (design2[ii].drink == drink_sd) && (design2[ii].signal == 'stop')) {
-          design2[ii].fixation = water;
+          design2[ii].fixation = drink_sd;
           design2[ii].first_stimulus = go_stim2;
           design2[ii].second_stimulus = stop_stim2;
           design2[ii].data.stim = choice_stim2;
           design2[ii].data.correct_response = "undefined";
           design2[ii].data.signal = "yes";
         } else if ((design2[ii].stim == choice_stim2) && (design2[ii].drink == blank) && (design2[ii].signal == 'stop')) {
-            design2[ii].fixation = water;
+            design2[ii].fixation = drink_sd;
             design2[ii].first_stimulus = go_stim2;
             design2[ii].second_stimulus = stop_stim2;
             design2[ii].data.stim = choice_stim2;
@@ -540,42 +540,42 @@ for (var ii = 0; ii < design3.length; ii++) {
           design3[ii].data.correct_response = cresp_stim2;
           design3[ii].data.signal = "no";
     } else if ((design3[ii].stim == choice_stim1) && (design3[ii].drink == water) && (design3[ii].signal == 'stop')) {
-        design3[ii].fixation = water;
+        design3[ii].fixation = blank;
         design3[ii].first_stimulus = go_stim1;
         design3[ii].second_stimulus = stop_stim1;
         design3[ii].data.stim = choice_stim1;
         design3[ii].data.correct_response = "undefined";
         design3[ii].data.signal = "yes";
       } else if ((design3[ii].stim == choice_stim1) && (design3[ii].drink == drink_sd) && (design3[ii].signal == 'stop')) {
-          design3[ii].fixation = water;
+          design3[ii].fixation = blank;
           design3[ii].first_stimulus = go_stim1;
           design3[ii].second_stimulus = stop_stim1;
           design3[ii].data.stim = choice_stim1;
           design3[ii].data.correct_response = "undefined";
           design3[ii].data.signal = "yes";
         } else if ((design3[ii].stim == choice_stim1) && (design3[ii].drink == blank) && (design3[ii].signal == 'stop')) {
-              design3[ii].fixation = water;
+              design3[ii].fixation = blank;
               design3[ii].first_stimulus = go_stim1;
               design3[ii].second_stimulus = stop_stim1;
               design3[ii].data.stim = choice_stim1;
               design3[ii].data.correct_response = "undefined";
               design3[ii].data.signal = "yes";
     } else if ((design3[ii].stim == choice_stim2) && (design3[ii].drink == water) && (design3[ii].signal == 'stop')) {
-        design3[ii].fixation = water;
+        design3[ii].fixation = blank;
         design3[ii].first_stimulus = go_stim2;
         design3[ii].second_stimulus = stop_stim2;
         design3[ii].data.stim = choice_stim2;
         design3[ii].data.correct_response = "undefined";
         design3[ii].data.signal = "yes";
       } else if ((design3[ii].stim == choice_stim2) && (design3[ii].drink == drink_sd) && (design3[ii].signal == 'stop')) {
-          design3[ii].fixation = water;
+          design3[ii].fixation = blank;
           design3[ii].first_stimulus = go_stim2;
           design3[ii].second_stimulus = stop_stim2;
           design3[ii].data.stim = choice_stim2;
           design3[ii].data.correct_response = "undefined";
           design3[ii].data.signal = "yes";
         } else if ((design3[ii].stim == choice_stim2) && (design3[ii].drink == blank) && (design3[ii].signal == 'stop')) {
-            design3[ii].fixation = water;
+            design3[ii].fixation = blank;
             design3[ii].first_stimulus = go_stim2;
             design3[ii].second_stimulus = stop_stim2;
             design3[ii].data.stim = choice_stim2;
