@@ -1064,9 +1064,7 @@ var block_procedure_practice = {
 
   timeline: [block_start, block_get_ready, trial_procedure_practice, block_feedback],
 
-  randomize_order: false,
 
-  repetitions: 1, // add one because the first block is the practice block
 
 };
 
@@ -1074,27 +1072,18 @@ var block_procedure_water = {
 
     timeline: [block_start, block_get_ready, trial_procedure_water, block_feedback],
 
-    randomize_order: false,
 
-    repetitions: 1, // add one because the first block is the practice block
 
   };
   var block_procedure_sd = {
 
       timeline: [block_start, block_get_ready, trial_procedure_sd, block_feedback],
 
-      randomize_order: false,
-
-      repetitions: 1, // add one because the first block is the practice block
 
     };
     var block_procedure_blank = {
 
         timeline: [block_start, block_get_ready, trial_procedure_blank, block_feedback],
-
-        randomize_order: false,
-
-        repetitions: 1, // add one because the first block is the practice block
 
       };
       var array = [block_procedure_blank, block_procedure_water, block_procedure_sd];
