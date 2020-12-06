@@ -637,72 +637,252 @@ if (flag_debug) {
 
 // welcome message trial. Also: end the experiment if browser is not Chrome or Firefox
 var welcome = {
-    type: "instructions",
-    pages: welcome_message,
-    show_clickable_nav: true,
-    allow_backward: false,
-    button_label_next: label_next_button,
-    on_start: function (trial) {
-        trial.pages = welcome_message;
+
+  type: "instructions",
+
+  pages: welcome_message,
+
+  show_clickable_nav: true,
+
+  allow_backward: false,
+  button_label_next: label_next_button,
+
+  on_start: function(trial){
+
+    if (bowser.name == 'Firefox' || bowser.name == 'Chrome'){
+
+      trial.pages = welcome_message;
+
+    } else {
+
+      trial.pages = not_supported_message;
+
+      setTimeout(function(){location.href="html/not_supported.html"}, 2000);
     }
+
+  }
+
 };
+
+
 
 // these events turn fullscreen mode on in the beginning and off at the end, if enabled (see experiment_variables.js)
+
 var fullscr = {
-    type: 'fullscreen',
-    fullscreen_mode: true,
-    message: full_screen_message,
-    button_label: label_next_button,
+
+  type: 'fullscreen',
+
+  fullscreen_mode: true,
+
+  message: full_screen_message,
+  button_label: label_next_button,
 };
+
+
 
 var fullscr_off = {
-    type: 'fullscreen',
-    fullscreen_mode: false,
-    button_label: label_next_button,
+
+  type: 'fullscreen',
+
+  fullscreen_mode: false,
+
+  button_label: label_next_button,
 };
+
+
+
+// informed consent trial. The informed_consent_text variable comes from /configuration/text_variables.js
+
+var consent = {
+
+  type: "instructions",
+
+  pages: [informed_consent_text],
+
+  show_clickable_nav: true,
+
+  button_label_next: label_consent_button,
+
+  allow_backward: false
+};
+
+
+
+// if enabled below, get participant's id from participant and add it to the datafile.
+
+// the prompt is declared in the configuration/text_variables.js file
+
+var participant_id = {
+
+  type: 'survey-text',
+
+  questions: [{
+
+    prompt: subjID_instructions,
+
+    required: true
+
+  }, ],
+
+  button_label: label_next_button,
+  on_finish: function(data) {
+
+    var responses = JSON.parse(data.responses);
+
+    var code = responses.Q0;
+
+    jsPsych.data.addProperties({
+
+      participantID: code
+
+    });
+
+  }
+
+};
+
+
+
+// get participant's age and add it to the datafile
+
+// the prompt is declared in the configuration/text_variables.js file
+
+var age = {
+
+  type: 'survey-text',
+
+  questions: [{
+
+    prompt: age_instructions,
+
+    required: true
+
+  }, ],
+
+  button_label: label_next_button,
+  on_finish: function(data) {
+
+    var responses = JSON.parse(data.responses);
+
+    var code = responses.Q0;
+
+    jsPsych.data.addProperties({
+
+      age: code
+
+    });
+
+  }
+
+};
+
+
+
+// get participant's gender and add it to the datafile
+
+// the prompt and options are declared in the configuration/text_variables.js file
+
+var gender = {
+
+  type: 'survey-multi-choice',
+
+  questions: [{
+
+    prompt: gender_instructions,
+
+    options: gender_options,
+
+    required: true
+
+  }, ],
+
+  button_label: label_next_button,
+  on_finish: function(data) {
+
+    var responses = JSON.parse(data.responses);
+
+    var code = responses.Q0;
+
+    jsPsych.data.addProperties({
+
+      gender: code
+
+    });
+
+  }
+
+};
+
+
 
 // instruction trial
+
 // the instructions are declared in the configuration/text_variables.js file
+
 var instructions = {
-    type: "instructions",
-    pages: [page1, page2],
-    show_clickable_nav: true,
-    button_label_previous: label_previous_button,
-    button_label_next: label_next_button,
+
+  type: "instructions",
+
+  pages: [page1, page2],
+
+  show_clickable_nav: true
+,
+  button_label_previous: label_previous_button,
+  button_label_next: label_next_button,
 };
+
+
 
 // start of each block
+
 // the start message is declared in the configuration/text_variables.js file
+
 var block_start = {
-    type: 'html-keyboard-response',
-    stimulus: text_at_start_block,
-    choices: ['space']
+
+  type: 'html-keyboard-response',
+
+  stimulus: text_at_start_block,
+
+  choices: ['space']
+
 };
 
+
+
 // get ready for beginning of block
+
 // the get ready message is declared in the configuration/text_variables.js file
+
 var block_get_ready = {
-    type: 'html-keyboard-response',
-    stimulus: get_ready_message,
-    choices: jsPsych.NO_KEYS,
-    trial_duration: 2000,
+
+  type: 'html-keyboard-response',
+
+  stimulus: get_ready_message,
+
+  choices: jsPsych.NO_KEYS,
+
+  trial_duration: 2000,
+
 };
+
 
 // blank inter-trial interval
 var blank_ITI = {
-    type: 'jspsych-detect-held-down-keys',
-    // this enables the detection of held down keys
-    stimulus: "",
-    // blank
-    trial_duration: ITI / 2,
-    response_ends_trial: false,
-};
 
+  type: 'jspsych-detect-held-down-keys',
+ // this enables the detection of held down keys
+  stimulus: "",
+ // blank
+  trial_duration: ITI/2,
+
+  response_ends_trial: false,
+
+};
 // now put the trial in a node that loops (if response is registered)
 var held_down_node = {
     timeline: [blank_ITI],
-    loop_function: function (data) {
-        if (data.values()[0].key_press != null) {
+    loop_function: function(data){
+        if(data.values()[0].key_press != null){
             return true; // keep looping when a response is registered
         } else {
             return false; // break out of loop when no response is registered
@@ -717,72 +897,86 @@ var held_down_node = {
 // (fixation -> first stimulus -> second stimulus, with variable inter-stimuli-intervals)
 
 var stimulus = {
-    type: 'custom-stop-signal-plugin',
-    fixation: jsPsych.timelineVariable('fixation'),
-    fixation_duration: FIX,
-    stimulus1: jsPsych.timelineVariable('first_stimulus'),
-    stimulus2: jsPsych.timelineVariable('second_stimulus'),
 
-    trial_duration: MAXRT, // this is the max duration of the actual stimulus (excluding fixation time)
-    // inter stimulus interval between first and second stimulus = stop signal delay (SSD)
-    ISI: function () {
-        var duration = SSD;
-        return duration
-    },
-    response_ends_trial: true,
+  type: 'custom-stop-signal-plugin',
 
-    choices: [cresp_stim1, cresp_stim2],
+  fixation: jsPsych.timelineVariable('fixation'),
+  fixation_duration: FIX,
+  stimulus1: jsPsych.timelineVariable('first_stimulus'),
 
-    data: jsPsych.timelineVariable('data'),
+  stimulus2: jsPsych.timelineVariable('second_stimulus'),
 
-    // was the response correct? adapt SSD accordingly
-    on_finish: function (data) {
+  trial_duration: MAXRT, // this is the max duration of the actual stimulus (excluding fixation time)
+  // inter stimulus interval between first and second stimulus = stop signal delay (SSD)
+  ISI: function() {
+    var duration = SSD;
 
-        // check if the response was correct
-        // keys are stored in keycodes not in character, so convert for convenience
-        if (data.key_press == null) {
-            // convert explicitly to string so that "undefined" (no response) does not lead to empty cells in the datafile
-            data.response = "undefined";
-        } else {
-            data.response = jsPsych.pluginAPI.convertKeyCodeToKeyCharacter(data.key_press);
-        }
-        data.correct = (data.response == data.correct_response);
+    return duration
 
-        // if no response was made, the reaction time should not be -250 but null
-        if (data.rt == -250) {
-            data.rt = null
+  },
+  response_ends_trial: true,
+
+  choices: [cresp_stim1, cresp_stim2],
+
+  data: jsPsych.timelineVariable('data'),
+
+  // was the response correct? adapt SSD accordingly
+
+  on_finish: function(data) {
+
+    // check if the response was correct
+    data.response = jsPsych.pluginAPI.convertKeyCodeToKeyCharacter(data.key_press); // keys are stored in keycodes not in character, so convert for convenience
+
+    data.response = String(data.response); // convert explicitly to string so that "undefined" (no response) does not lead to empty cells in the datafile
+    data.correct = data.response == data.correct_response;
+
+    // if no response was made, the reaction time should not be -250 but null
+    if (data.rt == -250) {
+      data.rt = null
+    };
+    // on go trials, reaction times on the fixation (below zero) are always wrong
+    if (data.signal == 'no' && data.rt < 0){
+      data.correct = false;
+    };
+    // set and adapt stop signal delay (SSD)
+    data.SSD = SSD;
+
+    data.trial_i = trial_ind;
+
+    data.block_i = block_ind;
+
+    trial_ind = trial_ind + 1;
+
+    if (data.signal == 'yes') {
+
+      if (data.correct) {
+
+        SSD = SSD + SSDstep;
+
+        if (SSD >= MAXRT) {
+
+          SSD = MAXRT - SSDstep
+
         };
-        // on go trials, reaction times on the fixation (below zero) are always wrong
-        if (data.signal == 'no' && data.rt < 0) {
-            data.correct = false;
-        };
-        // set and adapt stop signal delay (SSD)
-        data.SSD = SSD;
-        data.trial_i = trial_ind;
-        data.block_i = block_ind;
-        trial_ind = trial_ind + 1;
 
-        if (data.signal == 'yes') {
-            if (data.correct) {
-                SSD = SSD + SSDstep;
-                if (SSD >= MAXRT) {
-                    SSD = MAXRT - SSDstep
-                };
-                if (flag_debug) {
-                    console.log('Correct stop, SSD increased: ', SSD);
-                }
-            } else {
-                SSD = SSD - SSDstep;
-                if (SSD <= SSDstep) {
-                    SSD = SSDstep
-                };
-                if (flag_debug) {
-                    console.log('Failed stop, SSD decreased: ', SSD);
-                }
-            }
-        }
+      } else {
+
+        SSD = SSD - SSDstep;
+
+        if (SSD <= SSDstep) {
+
+          SSD = SSDstep
+
+        };
+
+      }
+
     }
+
+  }
+
 };
+
 
 
 // trial-by-trial feedback
@@ -790,168 +984,255 @@ var stimulus = {
 // messages are defined in the configuration/text_variables.js file
 
 var trial_feedback = {
-    type: 'html-keyboard-response',
-    choices: jsPsych.NO_KEYS,
-    trial_duration: iFBT,
 
-    stimulus: function () {
-        var last_trial_data = jsPsych.data.get().last(1).values()[0];
+  type: 'html-keyboard-response',
 
-        if (last_trial_data['signal'] === 'no') {
-            // go trials
-            if (last_trial_data['correct']) {
-                return correct_msg
-            } else {
-                if (last_trial_data['response'] === "undefined") {
-                    // no response previous trial
-                    return too_slow_msg
-                } else {
-                    if (last_trial_data['rt'] >= 0) {
-                        return incorrect_msg
-                    } else {
-                        return too_fast_msg
-                    }
-                }
-            }
+  choices: jsPsych.NO_KEYS,
+
+  trial_duration: iFBT,
+
+  stimulus: function() {
+
+    var last_trial_data = jsPsych.data.get().last(1).values()[0];
+
+    if (last_trial_data['signal'] === 'no') {
+ // go trials
+      if (last_trial_data['correct']) {
+
+        return correct_msg
+
+      } else {
+
+        if (last_trial_data['response'] === "undefined") {
+ // no response previous trial
+          return too_slow_msg
         } else {
-            // stop trials
-            if (last_trial_data['correct']) {
-                return correct_stop_msg
-            } else {
-                if (last_trial_data['rt'] >= 0) {
-                    return incorrect_stop_msg
-                } else {
-                    return too_fast_msg
-                }
-            }
+
+          if (last_trial_data['rt'] >= 0) {
+            return incorrect_msg
+          } else {
+            return too_fast_msg
+          }
         }
+
+      }
+
+    } else {
+ // stop trials
+      if (last_trial_data['correct']) {
+
+        return correct_stop_msg
+
+      } else {
+
+        if (last_trial_data['rt'] >= 0) {
+          return incorrect_stop_msg
+        } else {
+          return too_fast_msg
+        }
+      }
+
     }
+
+  }
+
 };
+
+
 
 // at the end of the block, give feedback on performance
+
 var block_feedback = {
-    type: 'html-keyboard-response',
-    trial_duration: bFBT,
 
-    choices: function () {
-        if (block_ind == NexpBL) {
-            return ['p', 'space']
-        } else {
-            return ['p'] // 'p' can be used to skip the feedback, useful for debugging
-        }
-    },
+  type: 'html-keyboard-response',
 
-    stimulus: function () {
-        // calculate performance measures
-        var ns_trials = jsPsych.data.get().filter({
-            trial_type: 'custom-stop-signal-plugin',
-            block_i: block_ind,
-            signal: 'no'
-        });
+  trial_duration: bFBT,
 
-        var avg_nsRT = Math.round(ns_trials.select('rt').subset(function (x) {
-            return x > 0;
-        }).mean());
+  choices: function() {
 
-        var prop_ns_Correct = Math.round(ns_trials.filter({
-                correct: true
-            }).count() / ns_trials.count() * 1000) /
-            1000; // unhandy multiplying and dividing by 1000 necessary to round to two decimals
+    if (block_ind == NexpBL){
 
-        var prop_ns_Missed = Math.round(ns_trials.filter({
-            key_press: null
-        }).count() / ns_trials.count() * 1000) / 1000;
+      return ['p','space']
 
-        var prop_ns_Incorrect = Math.round((1 - (prop_ns_Correct + prop_ns_Missed)) * 1000) / 1000;
-        var go_count = ns_trials.count();
-        var go_correct = ns_trials.filter({
-          correct: true
-        }).count();
-        var go_miss = ns_trials.filter({
-          key_press: null
-        }).count();
-        var go_wrong = Math.round(go_count - go_correct - go_miss);
+    } else {
 
-        var ss_trials = jsPsych.data.get().filter({
-            trial_type: 'custom-stop-signal-plugin',
-            block_i: block_ind,
-            signal: 'yes'
-        });
+      return ['p'] // 'p' can be used to skip the feedback, useful for debugging
 
-        var prop_ss_Correct = Math.round(ss_trials.filter({
-            correct: true
-        }).count() / ss_trials.count() * 1000) / 1000;
-        var ss_count = ss_trials.count();
-        var ss_correct = ss_trials.filter({
-          correct: true
-        }).count();
-        var ss_fail = ss_trials.filter({
-          correct: false
-        }).count();
-        var ng_trials = jsPsych.data.get().filter({
-            trial_type: 'custom-stop-signal-plugin',
-            block_i: block_ind,
-            signal: 'ng'
-        });
-
-        var prop_ng_Correct = Math.round(ng_trials.filter({
-            correct: true
-        }).count() / ng_trials.count() * 1000) / 1000;
-        var ng_count = ng_trials.count();
-        var ng_correct = ng_trials.filter({
-          correct: true
-        }).count();
-        var ng_fail = ng_trials.filter({
-          correct: false
-        }).count();
-
-        // in the last block, we should not say that there will be a next block
-        if (block_ind == NexpBL) {
-            var next_block_text = final_block_msg
-        } else { // make a countdown timer
-            var count = (bFBT / 1000);
-            var counter;
-            clearInterval(counter);
-            counter = setInterval(timer, 1000); //1000 will run it every 1 second
-            function timer() {
-                count = count - 1;
-                if (count <= 0) {
-                    clearInterval(counter);
-                }
-                document.getElementById("timer").innerHTML = count;
-            }
-            var next_block_text = next_block_msg // insert countdown timer
-        }
-
-        // the final text to present. Can also show correct and incorrect proportions if requested.
-        return [
-            no_signal_header +
-            sprintf(avg_rt_msg, avg_nsRT) +
-            sprintf(go_number_msg,go_count) +
-            sprintf(go_correct_msg,go_correct) +
-            sprintf(go_wrong_msg,go_wrong) +
-            sprintf(go_miss_msg,go_miss) +
-            //sprintf(prop_miss_msg, prop_ns_Missed) +
-            ng_signal_header +
-            //sprintf(number_corr_msg,prop_ng_Correct) +
-            sprintf(ng_number_msg,ng_count) +
-            sprintf(ng_correct_msg,ng_correct) +
-            sprintf(ng_fail_msg,ng_fail) +
-            stop_signal_header +
-            //sprintf(prop_corr_msg,prop_ss_Correct) +
-            sprintf(ss_number_msg,ss_count) +
-            sprintf(ss_correct_msg,ss_correct) +
-            sprintf(ss_fail_msg,ss_fail) +
-            next_block_text
-        ]
-    },
-
-    on_finish: function () {
-        trial_ind = 1; // reset trial counter
-        block_ind = block_ind + 1; // next block
     }
+
+  },
+
+  stimulus: function() {
+
+    // calculate performance measures
+
+    var ns_trials = jsPsych.data.get().filter({
+
+      trial_type: 'custom-stop-signal-plugin',
+
+      block_i: block_ind,
+
+      signal: 'no'
+
+    });
+
+    var avg_nsRT = Math.round(ns_trials.select('rt').subset(function(x){ return x > 0; }).mean());
+
+    var prop_ns_Correct = Math.round(ns_trials.filter({
+
+      correct: true
+
+    }).count() / ns_trials.count() * 1000) / 1000; // unhandy multiplying and dividing by 1000 necessary to round to two decimals
+
+    var prop_ns_Missed = Math.round(ns_trials.filter({
+
+      key_press: null
+
+    }).count() / ns_trials.count() * 1000) / 1000;
+
+    var prop_ns_Incorrect = Math.round((1 - (prop_ns_Correct + prop_ns_Missed)) * 1000) / 1000;
+
+    var go_count = ns_trials.count();
+    var go_correct = ns_trials.filter({
+      correct: true
+    }).count();
+    var go_miss = ns_trials.filter({
+      key_press: null
+    }).count();
+    var go_wrong = Math.round(go_count - go_correct - go_miss);
+
+    var ss_trials = jsPsych.data.get().filter({
+
+      trial_type: 'custom-stop-signal-plugin',
+
+      block_i: block_ind,
+
+      signal: 'yes'
+
+    });
+
+    var prop_ss_Correct = Math.round(ss_trials.filter({
+
+      correct: true
+
+    }).count() / ss_trials.count() * 1000) / 1000;
+
+    var ss_count = ss_trials.count();
+    var ss_correct = ss_trials.filter({
+      correct: true
+    }).count();
+    var ss_fail = ss_trials.filter({
+      correct: false
+    }).count();
+    var ng_trials = jsPsych.data.get().filter({
+
+      trial_type: 'custom-stop-signal-plugin',
+
+      block_i: block_ind,
+
+      signal: 'ng'
+
+    });
+
+    var prop_ng_Correct = Math.round(ng_trials.filter({
+
+      correct: true
+
+    }).count() / ng_trials.count() * 1000) / 1000;
+    var ng_count = ng_trials.count();
+    var ng_correct = ng_trials.filter({
+      correct: true
+    }).count();
+    var ng_fail = ng_trials.filter({
+      correct: false
+    }).count();
+
+    // in the last block, we should not say that there will be a next block
+
+    if (block_ind == NexpBL){
+
+      var next_block_text = final_block_msg
+
+    } else { // make a countdown timer
+
+      var count=(bFBT/1000);
+
+      var counter;
+
+      clearInterval(counter);
+
+      counter=setInterval(timer, 1000); //1000 will run it every 1 second
+
+      function timer(){
+
+        count=count-1;
+
+        if (count <= 0){
+
+            clearInterval(counter);
+
+        }
+
+        document.getElementById("timer").innerHTML = count ;
+
+      }
+
+      var next_block_text = next_block_msg // insert countdown timer
+
+    }
+
+    // the final text to present. Can also show correct and incorrect proportions if requested.
+
+    return [
+
+      no_signal_header +
+
+      sprintf(avg_rt_msg, avg_nsRT) +
+      sprintf(go_number_msg,go_count) +
+      sprintf(go_correct_msg,go_correct) +
+      sprintf(go_wrong_msg,go_wrong) +
+      sprintf(go_miss_msg,go_miss) +
+      //sprintf(prop_miss_msg, prop_ns_Missed) +
+      ng_signal_header +
+      //sprintf(number_corr_msg,prop_ng_Correct) +
+      sprintf(ng_number_msg,ng_count) +
+      sprintf(ng_correct_msg,ng_correct) +
+      sprintf(ng_fail_msg,ng_fail) +
+      stop_signal_header +
+      //sprintf(prop_corr_msg,prop_ss_Correct) +
+      sprintf(ss_number_msg,ss_count) +
+      sprintf(ss_correct_msg,ss_correct) +
+      sprintf(ss_fail_msg,ss_fail) +
+      next_block_text
+
+    ]
+
+  },
+
+  on_finish: function() {
+
+    trial_ind = 1; // reset trial counter
+
+    block_ind = block_ind + 1; // next block
+
+  }
+
 };
 
+
+var evaluate_end_if_practice = {
+  type: 'call-function',
+  func: function() {
+    if (block_ind == 0) { // this limits the amount of trials in the practice block
+      if (trial_ind > NdesignReps_practice * ntrials) {
+        jsPsych.endCurrentTimeline();
+      }
+    }
+  }
+};
+
+
+// end trial and save the data
 
 // end trial and save the data
 
@@ -965,45 +1246,85 @@ var goodbye = {
 combine trials in procedures (create nested timeline)
 #########################################################################*/
 
-if (fullscreen) {
-    var start_timeline = [fullscr, instructions]
+if (id == "participant"){
+
+  if (fullscreen){
+
+    var start_timeline = [welcome, consent, participant_id, age, gender, fullscr, instructions]
+
+  } else {
+
+    var start_timeline = [welcome, consent, participant_id, age, gender, instructions]
+
+  }
+
 } else {
-    var start_timeline = [instructions]
+
+    if (id == "url"){
+
+      var urlvar = jsPsych.data.urlVariables();
+
+      var code = urlvar.subject; jsPsych.data.addProperties({participantID: code});
+
+    } else {
+
+      var code = jsPsych.randomization.randomID(); jsPsych.data.addProperties({participantID: code});
+
+    }
+
+    if (fullscreen) {
+
+      var start_timeline = [welcome, consent, age, gender, fullscr, instructions]
+
+    } else {
+
+      var start_timeline = [welcome, consent, age, gender, instructions]
+
+    }
+
 }
 
+
+
 // start the experiment with the previously defined start_timeline trials
+
 var start_procedure = {
-    timeline: start_timeline,
+
+  timeline: start_timeline,
+
 };
+
+
 
 // put trial_feedback in its own timeline to make it conditional (only to be shown during the practice block)
+
 var feedback_node = {
-    timeline: [trial_feedback],
 
-    conditional_function: function () {
-        var last_trial_data = jsPsych.data.get().last(1).values()[0];
-        var current_block = block_ind;
-        if (current_block == 0) {
-            // this was previously set to provide feedback only on incorrect trials by adding: && last_trial_data['correct']==false
-            return true;
-        } else {
-            return false;
-        }
+  timeline: [trial_feedback],
+
+  conditional_function: function() {
+
+    var last_trial_data = jsPsych.data.get().last(1).values()[0];
+    var current_block = block_ind;
+
+    if (current_block == 0) {
+ // this was previously set to provide feedback only on incorrect trials by adding: && last_trial_data['correct']==false
+      return true;
+
+    } else {
+
+      return false;
+
     }
+
+  }
+
 };
 
-var evaluate_end_if_practice = {
-    type: 'call-function',
-    func: function () {
-        if (block_ind == 0) { // this limits the amount of trials in the practice block
-            if (trial_ind > NdesignReps_practice * ntrials) {
-                jsPsych.endCurrentTimeline();
-            }
-        }
-    }
-};
+
 
 // timeline_variables determine the stimuli in the 'stimulus' trial
+
 var fix = {
   type: 'html-keyboard-response',
   stimulus: '<div style="font-size:60px;">+</div>',
@@ -1109,8 +1430,6 @@ var block_procedure_water = {
           repetitions: 1, // add one because the first block is the practice block
 
         };
-
-
 // end of the experiment
 
 if (fullscreen){
