@@ -11,9 +11,9 @@
 /*
  * Generic task variables for Qualtrics
  */
-var sbj_id = "STOP-IT"; // mturk id
-var task_id = "${e://Field/workerId}"; // the prefix for the save file -- the main seq
-var flag_debug = true;
+var sbj_id = ""; // mturk id
+var task_id = ""; // the prefix for the save file -- the main seq
+var flag_debug = false;
 
 
 
