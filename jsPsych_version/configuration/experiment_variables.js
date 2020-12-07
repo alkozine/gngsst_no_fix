@@ -58,10 +58,10 @@ var NexpBL = 3;
 
 // ----- CUSTOMISE THE TIME INTERVALS (in milliseconds)-----
 
-var ITI = 500;    // fixed blank intertrial interval
+var ITI = 450;    // fixed blank intertrial interval
 var FIX = 500;
-var MAXRT = 700; // fixed maximum reaction time
-var SSD = 250;    // start value for the SSD tracking procedure; will be updated throughout the experiment
+var MAXRT = 1000; // fixed maximum reaction time
+var SSD = 200;    // start value for the SSD tracking procedure; will be updated throughout the experiment
 var SSDstep = 50; // step size of the SSD tracking procedure; this is also the lowest possible SSD
 var iFBT = 750;   // immediate feedback interval (during the practice phase)
 var bFBT = 15000; // break interval between blocks
